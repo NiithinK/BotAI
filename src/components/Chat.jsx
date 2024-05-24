@@ -74,7 +74,7 @@ const Chat = () => {
                             <div key={index}>
                                 {msg.sender === 'user' ? (
                                     <Box sx={{ width: '100%', mb: 1 }}>
-                                        <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%',  }}>
+                                        <Paper sx={{ p: 2, background: '#D7C7F421', width: isMobile ? '90%' : '95%',  }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                 <img src={you} alt="" style={{ marginRight: '10px' }} />
                                                 <Box>
@@ -87,7 +87,7 @@ const Chat = () => {
                                     </Box>
                                 ) : (
                                     <Box sx={{ width: '100%', mb: 1, background: '#D7C7F421' }}>
-                                        <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%' }}>
+                                        <Paper sx={{ p: 2, background: '#D7C7F421', width: isMobile ? '90%' : '95%', }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                 <img src={logo} style={{ borderRadius: '50%', marginRight: '10px' }} alt="" />
                                                 <Box>
@@ -132,7 +132,7 @@ const Chat = () => {
                         fullWidth
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        sx={{ width: isMobile ? '60%' : '65%', background: 'white' }}
+                        sx={{ width: isMobile ? '60%' : '80%', background: 'white' }}
                     />
                     <Button variant="contained" color="primary" sx={{ margin: '10px', padding: '10px', background: '#D7C7F4', color: 'black', width: '5%' }} onClick={handleSend}>
                         Ask
