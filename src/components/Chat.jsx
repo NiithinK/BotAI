@@ -8,7 +8,7 @@ import { Button, TextField, Typography, Paper, IconButton, Box, Rating } from '@
 import Sidebar from './sidebar';
 import logo from '../assets/image 29.png';
 import you from '../assets/you.png';
-
+import useMediaQuery from "@mui/material/useMediaQuery";
 const Chat = () => {
     const { conversations, setConversations } = useContext(ChatContext);
     const [input, setInput] = useState('');
@@ -17,6 +17,8 @@ const Chat = () => {
     const [feedbacks, setFeedbacks] = useState([]);
     const [rating, setRating] = useState(0);
     const [feedbackText, setFeedbackText] = useState('');
+    const isMobile = useMediaQuery('(max-width:600px)');
+
 
     useEffect(() => {
         const savedConversations = JSON.parse(localStorage.getItem('conversations'));
@@ -64,13 +66,15 @@ const Chat = () => {
             <Sidebar />
             <div style={{ flexGrow: 1, padding: '24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <div style={{ flex: 1, overflowY: 'auto', paddingBottom: '120px' }}>
-                    <Typography variant="h4" sx={{ marginBottom: '10px', fontWeight: '700', fontSize: '26px', color: '#9785BA' }}>Bot AI</Typography>
-                    <Paper style={{ padding: '1em', marginBottom: '1em', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' }}>
+                    <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: '700', fontSize: '26px', color: '#9785BA', marginTop: '25px', textAlign: isMobile ? 'center' : 'left',  marginLeft: isMobile ? 0 : 100 }}>
+                        Bot AI
+                    </Typography>
+                    <Paper style={{ padding: '1em', marginBottom: '1em', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)',marginLeft: isMobile ? 0 : 240 }}>
                         {currentConversation.map((msg, index) => (
                             <div key={index}>
                                 {msg.sender === 'user' ? (
                                     <Box sx={{ width: '100%', mb: 1 }}>
-                                        <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%' }}>
+                                        <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%',  }}>
                                             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                 <img src={you} alt="" style={{ marginRight: '10px' }} />
                                                 <Box>
@@ -89,13 +93,15 @@ const Chat = () => {
                                                 <Box>
                                                     <Typography variant="body1" sx={{ fontWeight: 'bold' }}>Soul AI:</Typography>
                                                     <Typography variant="body1">{msg.text}</Typography>
+                                                    <Box sx={{display:'flex',marginTop:'3px'}}>
                                                     <Typography variant="caption" sx={{ display: 'block' }}>{msg.time}</Typography>
                                                     <IconButton color="primary" onClick={() => handleFeedback(index, 'thumbs-up')}>
-                                                        <IoMdThumbsUp />
+                                                        <IoMdThumbsUp color="grey" />
                                                     </IconButton>
                                                     <IconButton color="primary" onClick={() => handleOpenFeedbackForm(index)}>
-                                                        <IoMdThumbsDown />
+                                                        <IoMdThumbsDown color="grey" />
                                                     </IconButton>
+                                                    </Box>
                                                     {feedbacks[index] === 'thumbs-up' && (
                                                         <Typography variant="body2" color="primary">
                                                             <Rating
@@ -121,13 +127,12 @@ const Chat = () => {
                         ))}
                     </Paper>
                 </div>
-                <div style={{ position: 'fixed', bottom: 0, left: 240, width: 'calc(100% - 240px)', backgroundColor: '#fff', padding: '10px', boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)' }}>
+                <div style={{ position: 'fixed', bottom: 0, left: isMobile ? 0 : 240, width: isMobile ? '100%' : '90%', backgroundColor: '#fff', padding: '10px', boxShadow: '0 -2px 10px rgba(0, 0, 0, 0.1)' }}>
                     <TextField
                         fullWidth
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        
-                        sx={{ width: '75%', background: 'white' }}
+                        sx={{ width: isMobile ? '60%' : '75%', background: 'white' }}
                     />
                     <Button variant="contained" color="primary" sx={{ margin: '10px', padding: '10px', background: '#D7C7F4', color: 'black', width: '5%' }} onClick={handleSend}>
                         Ask
@@ -138,7 +143,7 @@ const Chat = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 };
 
 export default Chat;

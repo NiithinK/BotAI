@@ -97,15 +97,16 @@ const PastConversations = () => {
 
     return (
         <>
-            <div style={{ padding: '24px', marginLeft: '25px' }}>
+       
+            <div style={{ padding: '24px', marginLeft: '25px', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'}}>
             <IconButton onClick={() => navigate('/')} sx={{ marginBottom: '1em' }}>
                         <IoArrowBackCircle /> Back
                     </IconButton>
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                 <Typography variant="h4" sx={{ marginBottom: '10px', marginLeft: '10px', fontWeight: '700', fontSize: '26px', color: '#9785BA' }}>
                    
-                    Past Conversations
-                    <Button onClick={handleClear} sx={{ marginLeft: '10px', background: '#D7C7F4',color:'black'}}>Clear History</Button>
+                Conversation History
+                    <Button onClick={handleClear} sx={{ marginLeft: '30px', background: '#D7C7F4',color:'black'}}>Clear History</Button>
                 </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
