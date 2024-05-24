@@ -6,6 +6,8 @@ import FeedbackForm from './FeedbackForm';
 import aiResponses from '../data/aiResponses.json';
 import { Button, TextField, Typography, Paper, IconButton, Box, Rating } from '@mui/material';
 import Sidebar from './sidebar';
+import logo from '../assets/image 29.png';
+import you from '../assets/you.png';
 
 const Chat = () => {
     const { conversations, setConversations } = useContext(ChatContext);
@@ -52,12 +54,10 @@ const Chat = () => {
     };
 
     const handleSaveConversation = (onSave) => {
-       
-        const newConversations = [...conversations, { messages: currentConversation, rating,Comment: onSave  }];
+        const newConversations = [...conversations, { messages: currentConversation, rating, Comment: onSave }];
         setConversations(newConversations);
         localStorage.setItem('conversations', JSON.stringify(newConversations));
     };
-   
 
     return (
         <div style={{ display: 'flex', height: '100vh', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' }}>
@@ -71,41 +71,49 @@ const Chat = () => {
                                 {msg.sender === 'user' ? (
                                     <Box sx={{ width: '100%', mb: 1 }}>
                                         <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%' }}>
-                                            <Typography variant="body1" sx={{ fontWeight: 'Bolder' }}>You: </Typography>
-                                            <Typography variant="body1">{msg.text}</Typography>
-                                            <Typography variant="caption" sx={{ display: 'block' }}>{msg.time}</Typography>
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={you} alt="" style={{ marginRight: '10px' }} />
+                                                <Box>
+                                                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>You:</Typography>
+                                                    <Typography variant="body1">{msg.text}</Typography>
+                                                    <Typography variant="caption" sx={{ display: 'block' }}>{msg.time}</Typography>
+                                                </Box>
+                                            </Box>
                                         </Paper>
                                     </Box>
                                 ) : (
                                     <Box sx={{ width: '100%', mb: 1, background: '#D7C7F421' }}>
                                         <Paper sx={{ p: 2, background: '#D7C7F421', maxWidth: '70%' }}>
-                                            <Typography variant="body1" sx={{ fontWeight: 'Bolder' }}>Soul AI:</Typography>
-                                            <Typography variant="body1">{msg.text}</Typography>
-                                            <Typography variant="caption" sx={{ display: 'block' }}>{msg.time}</Typography>
-                                            <IconButton color="primary" onClick={() => handleFeedback(index, 'thumbs-up')}>
-                                                <IoMdThumbsUp />
-                                            </IconButton>
-                                            <IconButton color="primary" onClick={() => handleOpenFeedbackForm(index)}>
-                                                <IoMdThumbsDown />
-                                            </IconButton>
-                                            {feedbacks[index] === 'thumbs-up' && (
-                                                <Typography variant="body2" color="primary">
-                                                    <Rating
-                                                        name="rating"
-                                                        value={rating}
-                                                        onChange={(e, newValue) => setRating(newValue)}
-                                                    />
-                                                </Typography>
-                                            )}
-                                            {openFeedbackIndex === index && (
-                                                <FeedbackForm
-                                                    open={openFeedbackIndex !== null}
-                                                    handleClose={handleCloseFeedbackForm}
-                                                    onSave={handleSaveConversation}
-                                                  
-                                                />
-                                                
-                                            )}
+                                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                                <img src={logo} style={{ borderRadius: '50%', marginRight: '10px' }} alt="" />
+                                                <Box>
+                                                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>Soul AI:</Typography>
+                                                    <Typography variant="body1">{msg.text}</Typography>
+                                                    <Typography variant="caption" sx={{ display: 'block' }}>{msg.time}</Typography>
+                                                    <IconButton color="primary" onClick={() => handleFeedback(index, 'thumbs-up')}>
+                                                        <IoMdThumbsUp />
+                                                    </IconButton>
+                                                    <IconButton color="primary" onClick={() => handleOpenFeedbackForm(index)}>
+                                                        <IoMdThumbsDown />
+                                                    </IconButton>
+                                                    {feedbacks[index] === 'thumbs-up' && (
+                                                        <Typography variant="body2" color="primary">
+                                                            <Rating
+                                                                name="rating"
+                                                                value={rating}
+                                                                onChange={(e, newValue) => setRating(newValue)}
+                                                            />
+                                                        </Typography>
+                                                    )}
+                                                    {openFeedbackIndex === index && (
+                                                        <FeedbackForm
+                                                            open={openFeedbackIndex !== null}
+                                                            handleClose={handleCloseFeedbackForm}
+                                                            onSave={handleSaveConversation}
+                                                        />
+                                                    )}
+                                                </Box>
+                                            </Box>
                                         </Paper>
                                     </Box>
                                 )}
@@ -118,8 +126,8 @@ const Chat = () => {
                         fullWidth
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder="Type your question"
-                        sx={{ width: '65%', background: 'white' }}
+                        
+                        sx={{ width: '75%', background: 'white' }}
                     />
                     <Button variant="contained" color="primary" sx={{ margin: '10px', padding: '10px', background: '#D7C7F4', color: 'black', width: '5%' }} onClick={handleSend}>
                         Ask
