@@ -1,37 +1,3 @@
-// import React from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { Button, Drawer, List, ListItem, ListItemText } from '@mui/material';
-// import logo from '../assets/image 29.png';
-// import newPic from '../assets/image 31.png'
-// const Sidebar = ({ darkMode, setDarkMode }) => {
-//     const navigate = useNavigate();
-
-//     return (
-//         <Drawer
-//             variant="permanent"
-//             sx={{
-//                 width: 240,
-//                 flexShrink: 0,
-//                 [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box' },
-//             }}
-//         >
-//             <List> 
-//                 <ListItem button onClick={() => navigate('/history')}  sx={{background:'#D7C7F4',textAlign:'center',}}>
-//                     <img style={{borderRadius:'25px',marginLeft:'10px'}} src={logo} alt="" />
-//                     <Button sx={{marginLeft:'5px',color:'black',fontWeight:'700'}}>New Chat <img style={{borderRadius:'25px',marginLeft:'10px'}} src={newPic} alt="" /></Button>
-                    
-//                 </ListItem>
-//                 <ListItem button onClick={() => navigate('/history')}>
-//                     <ListItemText sx={{background:'#D7C7F4' ,textAlign:'center',borderRadius:'5px'}} primary="Past Conversations" />
-//                 </ListItem>
-//                 <ListItem>
-                   
-//                 </ListItem>
-//             </List>
-//         </Drawer>
-//     );
-// };
-// export default Sidebar
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
