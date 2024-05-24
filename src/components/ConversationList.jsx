@@ -97,7 +97,7 @@ const PastConversations = () => {
 
     return (
         <>
-       
+        
             <div style={{ padding: '24px', marginLeft: '25px', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'}}>
             <IconButton onClick={() => navigate('/')} sx={{ marginBottom: '1em' }}>
                         <IoArrowBackCircle /> Back
