@@ -7,12 +7,14 @@ import Sidebar from './sidebar';
 import Rating from '@mui/material/Rating';
 import { useNavigate } from 'react-router-dom';
 import { IoArrowBackCircle } from "react-icons/io5";
+ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const PastConversations = () => {
     const { conversations, setConversations } = useContext(ChatContext);
     const [filteredConversations, setFilteredConversations] = useState([]);
     const [filterRating, setFilterRating] = useState('');
     const navigate = useNavigate();
+    const isMobile = useMediaQuery('(max-width:600px)');
 
     useEffect(() => {
         const savedConversations = JSON.parse(localStorage.getItem('conversations'));
@@ -37,9 +39,9 @@ const PastConversations = () => {
 
     return (
         <>
-        
+            <Sidebar/>
             <div style={{ padding: '24px', marginLeft: '25px', background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'}}>
-            <IconButton onClick={() => navigate('/')} sx={{ marginBottom: '1em' }}>
+            <IconButton onClick={() => navigate('/')} sx={{ marginBottom: '1em',marginLeft: isMobile ? 0 : 25,marginTop:isMobile ? 5 : 0  }}>
                         <IoArrowBackCircle /> Back
                     </IconButton>
                 <Box sx={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -75,23 +77,24 @@ const PastConversations = () => {
                 </FormControl>
                 </Box>
                 {filteredConversations.map((conversation, index) => (
-                    <Paper key={index} style={{ padding: '1em', marginBottom: '1em', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)' }}>
+                    <Paper key={index} style={{ marginLeft: isMobile ? 0 : 25,padding: '1em', marginBottom: '1em', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)' }}>
                         {conversation.messages.map((msg, msgIndex) => (
-                            <Box key={msgIndex} sx={{ width: '100%', mb: 1, display: 'flex', alignItems: 'center' }}>
+                            <Box key={msgIndex} sx={{ marginLeft: isMobile ? 0 : 25, mb: 1, display: 'flex', alignItems: 'center' }}>
                                 <Typography variant="body1" sx={{ fontWeight: 'bolder', marginRight: '10px' }}>
                                     {msg.sender === 'user' ? 'You:' : 'Soul AI:'}
                                 </Typography>
                                 <Typography variant="body1">{msg.text}</Typography>
                             </Box>
                         ))}
-                        <Typography variant="body2" color="Black">Rating: </Typography>
+                        <Typography variant="body2" color="Black" sx={{marginLeft: isMobile ? 0 : 25}}>Rating: </Typography>
                         <Rating
                             name="text-feedback"
                             value={conversation.rating}
                             readOnly
                             precision={0.5}
+                            sx={{marginLeft: isMobile ? 0 : 25}}
                         />
-                        <Typography variant="body2" color="Black">Feedback: {conversation.Comment.comments}</Typography>
+                        <Typography variant="body2" color="Black" sx={{marginLeft: isMobile ? 0 : 25}}>Feedback: {conversation.Comment.comments}</Typography>
                     </Paper>
                 ))}
             </div>

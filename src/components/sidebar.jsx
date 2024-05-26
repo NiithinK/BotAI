@@ -16,7 +16,7 @@ const Sidebar = ({ darkMode, setDarkMode }) => {
 
     const drawerContent = (
         <List> 
-                         <ListItem button onClick={() => navigate('/history')}  sx={{background:'#D7C7F4',textAlign:'center',}}>
+                         <ListItem button  onClick={() => navigate('/')}  sx={{background:'#D7C7F4',textAlign:'center',}}>
                              <img style={{borderRadius:'25px',marginLeft:'10px'}} src={logo} alt="" />
                              <Button sx={{marginLeft:'5px',color:'black',fontWeight:'700'}} onClick={() => navigate('/')} >New Chat <img style={{borderRadius:'25px',marginLeft:'10px'}} src={newPic} alt="" /></Button>
                             

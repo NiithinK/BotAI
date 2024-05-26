@@ -132,7 +132,7 @@ const Chat = () => {
                         fullWidth
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        sx={{ width: isMobile ? '60%' : '80%', background: 'white' }}
+                        sx={{ width: isMobile ? '50%' : '80%', background: 'white' }}
                     />
                     <Button variant="contained" color="primary" sx={{ margin: '10px', padding: '10px', background: '#D7C7F4', color: 'black', width: '5%' }} onClick={handleSend}>
                         Ask
