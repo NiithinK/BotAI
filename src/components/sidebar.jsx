@@ -5,7 +5,7 @@ import { Button, Drawer, List, ListItem, ListItemText, IconButton, useMediaQuery
 import { IoMenu } from "react-icons/io5";
 import logo from '../assets/image 29.png';
 import newPic from '../assets/image 31.png'
-const Sidebar = ({ darkMode, setDarkMode }) => {
+const Sidebar = () => {
     const navigate = useNavigate();
     const isMobile = useMediaQuery('(max-width:600px)');
     const [mobileOpen, setMobileOpen] = useState(false);

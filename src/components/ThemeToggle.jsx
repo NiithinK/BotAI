@@ -18,7 +18,7 @@ const ThemeToggle = ({ children }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit" >
+            <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit" sx={{display:'flex', marginLeft:'auto',}} >
                 {darkMode ? <MdBrightness7 /> : <MdBrightness4 />}
             </IconButton>
             {children}
